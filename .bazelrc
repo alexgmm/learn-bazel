@@ -1,0 +1,11 @@
+common --enable_bzlmod
+
+build --color=yes
+build --show_result=1
+
+build --experimental_repository_cache_hardlinks
+
+build --sandbox_tmpfs_path=/tmp
+build --repository_cache=~/.cache/bazel-repo
+
+try-import %workspace%/user.bazelrc
