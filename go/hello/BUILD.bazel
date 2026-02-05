@@ -1,8 +1,15 @@
-load("@rules_go//go:def.bzl", "go_binary")
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
 go_binary(
     name = "hello",
-    srcs = ["main.go"],
+    embed = [":hello_lib"],
     importpath = "learn-bazel/go/hello",
     visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "hello_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/alexgmm/learn-bazel/go/hello",
+    visibility = ["//visibility:private"],
 )

@@ -1,0 +1,7 @@
+load("@gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/alexgmm/learn-bazel
+
+gazelle(
+    name = "gazelle",
+)
