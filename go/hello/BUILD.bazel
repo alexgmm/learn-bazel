@@ -12,4 +12,5 @@ go_library(
     srcs = ["main.go"],
     importpath = "github.com/alexgmm/learn-bazel/go/hello",
     visibility = ["//visibility:private"],
+    deps = ["@com_github_spf13_cobra//:cobra"],
 )
