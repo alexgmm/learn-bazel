@@ -1,0 +1,11 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "cmd",
+    srcs = ["root.go"],
+    importpath = "github.com/alexgmm/learn-bazel/go/hello/cmd",
+    visibility = ["//go/hello:__subpackages__"],
+    deps = [
+        "@com_github_spf13_cobra//:cobra",  # Ensure this alias exists in your workspace
+    ],
+)
