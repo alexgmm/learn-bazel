@@ -1,15 +1,15 @@
 load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
 go_binary(
-    name = "hello",
-    embed = [":hello_lib"],
+    name = "kube-cli",
+    embed = [":kube-cli_lib"],
     visibility = ["//visibility:public"],
 )
 
 go_library(
-    name = "hello_lib",
+    name = "kube-cli_lib",
     srcs = ["main.go"],
-    importpath = "github.com/alexgmm/learn-bazel/go/hello",
+    importpath = "github.com/alexgmm/learn-bazel/go/kube-cli",
     visibility = ["//visibility:private"],
-    deps = ["//go/hello/cmd"],
+    deps = ["//go/kube-cli/cmd"],
 )

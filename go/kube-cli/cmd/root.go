@@ -7,7 +7,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "hello",
+	Use:   "kube-cli",
 	Short: "A brief description of your application",
 }
 
