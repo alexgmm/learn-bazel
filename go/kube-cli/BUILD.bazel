@@ -1,11 +1,13 @@
 load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
+# bazel run //go/kube-cli:kube-cli
 go_binary(
     name = "kube-cli",
     embed = [":kube-cli_lib"],
     visibility = ["//visibility:public"],
 )
 
+# bazel build //go/kube-cli:kube-cli_lib
 go_library(
     name = "kube-cli_lib",
     srcs = ["main.go"],
