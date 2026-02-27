@@ -1,4 +1,5 @@
 load("@rules_go//go:def.bzl", "go_binary", "go_library")
+load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
 
 # bazel run //go/kube-cli:kube-cli
 go_binary(
@@ -14,4 +15,36 @@ go_library(
     importpath = "github.com/alexgmm/learn-bazel/go/kube-cli",
     visibility = ["//visibility:private"],
     deps = ["//go/kube-cli/cmd"],
+)
+
+# bazel run //go/kube-cli:clientgen
+sh_binary(
+    name = "clientgen",
+    srcs = ["tools/clientgen.sh"],
+    args = [
+        "$(location @io_k8s_code_generator//cmd/client-gen:client-gen)",
+        "$(location hack/boilerplate.go.txt)",
+        "github.com/alexgmm/learn-bazel",
+        "go/kube-cli/pkg/client",
+        "go/kube-cli/pkg/client",
+    ],
+    data = [
+        "hack/boilerplate.go.txt",
+        "@io_k8s_code_generator//cmd/client-gen",
+    ],
+)
+
+# bazel run //go/kube-cli:kubegen --spawn_strategy=local
+sh_binary(
+    name = "kubegen",
+    srcs = ["tools/kubegen.sh"],
+    args = [
+        "$(location @io_k8s_code_generator//cmd/deepcopy-gen:deepcopy-gen)",
+        "$(location hack/boilerplate.go.txt)",
+        "github.com/alexgmm/learn-bazel/go/kube-cli/pkg/api/statectl/v1alpha1",
+    ],
+    data = [
+        "hack/boilerplate.go.txt",
+        "@io_k8s_code_generator//cmd/deepcopy-gen",
+    ],
 )

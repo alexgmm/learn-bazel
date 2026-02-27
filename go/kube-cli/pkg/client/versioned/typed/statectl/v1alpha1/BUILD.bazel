@@ -1,0 +1,21 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "v1alpha1",
+    srcs = [
+        "doc.go",
+        "generated_expansion.go",
+        "instance.go",
+        "statectl_client.go",
+    ],
+    importpath = "github.com/alexgmm/learn-bazel/go/kube-cli/pkg/client/versioned/typed/statectl/v1alpha1",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/kube-cli/pkg/api/statectl/v1alpha1",
+        "//go/kube-cli/pkg/client/versioned/scheme",
+        "@io_k8s_apimachinery//pkg/apis/meta/v1:meta",
+        "@io_k8s_apimachinery//pkg/types",
+        "@io_k8s_apimachinery//pkg/watch",
+        "@io_k8s_client_go//rest",
+    ],
+)

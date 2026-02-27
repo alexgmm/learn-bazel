@@ -1,0 +1,14 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "versioned",
+    srcs = ["clientset.go"],
+    importpath = "github.com/alexgmm/learn-bazel/go/kube-cli/pkg/client/versioned",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/kube-cli/pkg/client/versioned/typed/statectl/v1alpha1",
+        "@io_k8s_client_go//discovery",
+        "@io_k8s_client_go//rest",
+        "@io_k8s_client_go//util/flowcontrol",
+    ],
+)
